@@ -12,6 +12,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
+            align-items: center;
         }
 
         .box {
@@ -21,10 +22,10 @@
             display: flex;
             flex-direction: column;
             height: 400px;
-            width: 300px;
+            width: 250px;
             border: 2px solid rgb(0, 0, 0);
             align-items: center;
-            box-shadow: 5px 5px 10px rgb(0, 0, 0);
+            box-shadow: 5px 5px 25px rgb(0, 0, 0);
 
         }
 
@@ -69,45 +70,44 @@
         }
 
 
-        #plus {
-            height: 200px;
-            transition: 0.3s;
-            width: fit-content
-        }
 
-        .add {
-
+        .add-container {
+            background-color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 400px;
-            width: 300px;
+            width: 250px;
             border: 2px solid black;
             margin: 10px 0px;
             padding: 10px 10px;
-            transition: 0.3s
+            transition: 0.3s;
+            overflow:hidden
         }
 
-        .add:hover #plus {
+        .add-button{
+            transition:0.3s
+        }
+
+        .add-container:hover .add-button {
             transform: scale(1.1)
         }
 
-        .all {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
+     
         .container {
             display: flex;
             flex-wrap: wrap;
             background-color: antiquewhite;
+            align-items: center;
+            align-content: center;
 
         }
     </style>
 </head>
 
 <body>
-    <div class="all">
+    
+  
         <div class="container">
             <div class="box">
                 <img class="productimage" src="pen.jpeg" alt="Image Of Pen">
@@ -115,23 +115,30 @@
                 <h3 class="price">Rs.100</h3>
                 <button class="order">Order Now</button>
             </div>
-            
+
+            <div class="add-container">
+                <img src="add.jpeg" alt="Add the box" class="add-button">
+            </div>
+        
+     
         </div>
-        <div class="add">
-            <img src="add.jpeg" alt="Add the box" id="plus">
-        </div>
-    </div>
+       
     <script>
-        const add = document.querySelector(".add")
-        const newBox = document.querySelector(".box");
-        add.addEventListener("click", () => {
+        
+            const container = document.querySelector(".container");
+            const addButton = document.querySelector(".add-button");
 
-            const original = document.querySelector(".box");
-            let clone = original.cloneNode(true);
-            original.parentNode.appendChild(clone);
+            addButton.addEventListener("click", function () {
+                const originalBox = document.querySelector(".box");
+                const clonedBox = originalBox.cloneNode(true);
+                container.insertBefore(clonedBox, addButton.parentNode);
+            });
+   
 
-        })
+       
     </script>
 </body>
 
 </html>
+           
+      
